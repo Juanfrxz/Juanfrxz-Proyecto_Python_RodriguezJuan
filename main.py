@@ -10,7 +10,7 @@ if __name__ == '__main__':
     while (isActive):
         try:
             print(msg.tituloPrincipal)
-            print(iu.menu)
+            print(iu.registro)
             opMenu = int(input('づ￣ 3￣)づ⮞ '))
             match opMenu:
                 case 1:

@@ -1,3 +1,8 @@
+registro="""
+1. Registrarse
+2. Inicirar sesion
+3. Salir
+"""
 menu="""
 1. Jugar 1v1 
 2. Encontra de la maquina
