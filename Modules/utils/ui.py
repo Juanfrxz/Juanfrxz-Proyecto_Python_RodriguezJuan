@@ -1,10 +1,11 @@
-registro="""
-1. Registrarse
-2. Inicirar sesion
-3. Salir
+menuRegistro="""
+1. Jugar
+2. Registrarse
+3. Inicirar sesion
+4. Salir
 """
-menu="""
-1. Jugar 1v1 
+menuJugar="""
+1. Jugar 1v1
 2. Encontra de la maquina
 3. Estadisticas
 4. Salir

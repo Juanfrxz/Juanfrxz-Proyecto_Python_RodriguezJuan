@@ -9,4 +9,4 @@ def load_json(filename, default_value):
 
 def save_json(filename, data):
     with open(filename, 'w') as f:
-        json.dump(data, f, indent=2)
+        json.dump(data, f, indent=4)
