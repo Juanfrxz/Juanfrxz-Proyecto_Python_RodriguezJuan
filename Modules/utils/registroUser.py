@@ -1,6 +1,7 @@
 import os
 import Modules.utils.ui as menu
 import Modules.utils.mensajes as msg
+import Modules.utils.util as utl
 
 def menuPrincipal():
     thechapipun = []
@@ -26,21 +27,33 @@ def menuPrincipal():
                             print('Error en el dato ingresado...')
                             os.system('pause')
                             continue
-                        match opMenuGame:
-                            case 1:
-                                pass
-                            case 2:
-                                pass
-                            case 3:
-                                pass
-                            case 4:
-                                pass
+                        else:
+                            match opMenuGame:
+                                case 1:
+                                    pass
+                                case 2:
+                                    pass
+                                case 3:
+                                    pass
+                                case 4:
+                                    pass
                 case 2:
-                    pass
+                    isAddRsg = True
+                    opMenuRegis = 0
+                    while (isAddRsg):
+                        try:
+                            pass
+                        except ValueError:
+                            print('Error en el dato ingresado...')
+                            os.system('pause')
+                            continue
                 case 3:
                     pass
                 case 4:
-                    pass
+                    isActive = utl.validateData(msg.msgInfoEquipo)
+                case _:
+                    print('Opcion ingresa no esta permitida')
+                    os.system ('pause')
         except ValueError:
             print('La opcion ingresa no es valida')
             os.system('pause')
