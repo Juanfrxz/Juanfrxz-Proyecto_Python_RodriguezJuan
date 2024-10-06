@@ -1,7 +1,8 @@
 import os
-import Modules.utils.ui as menu
-import Modules.utils.mensajes as msg
-import Modules.utils.util as utl
+from Modules.utils import menus as men
+from Modules.utils import mensajes as msg
+from Modules.utils import util as utl
+from Modules.utils import createUser as cru
 
 def menuPrincipal():
     thechapipun = []
@@ -11,7 +12,7 @@ def menuPrincipal():
         try:
             os.system('cls')
             print(msg.tituloPrincipal)
-            print(menu.menuRegistro)
+            print(men.menuRegistro)
             opMenu = int(input('づ￣ 3￣)づ⮞ '))
             match opMenu:
                 case 1:
@@ -21,7 +22,7 @@ def menuPrincipal():
                         try:
                             os.system('cls')
                             print(msg.tituloJugar)
-                            print(menu.menuJugar)
+                            print(men.menuJugar)
                             opMenu = int(input('づ￣ 3￣)づ⮞ '))
                         except ValueError:
                             print('Error en el dato ingresado...')
@@ -42,7 +43,9 @@ def menuPrincipal():
                     opMenuRegis = 0
                     while (isAddRsg):
                         try:
-                            pass
+                            os.system('cls')
+                            cru.solicitar_informacion()
+                            isActive = utl.vali(msg.msgRegister)
                         except ValueError:
                             print('Error en el dato ingresado...')
                             os.system('pause')
