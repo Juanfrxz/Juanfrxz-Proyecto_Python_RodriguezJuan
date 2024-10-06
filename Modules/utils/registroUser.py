@@ -4,7 +4,7 @@ from Modules.utils import mensajes as msg
 from Modules.utils import util as utl
 from Modules.utils import createUser as cru
 from Modules.utils import JvsIA as ia
-
+ 
 def menuPrincipal():
     thechapipun = []
     isActive = True
@@ -24,6 +24,7 @@ def menuPrincipal():
                             os.system('cls')                           
                             print(msg.titulo1VS1)
                             cru.solicitar_informacion()
+                            isActive = ia.juego()
                         except ValueError:
                             print('Error en el dato ingresado...')
                             os.system('pause')
@@ -36,11 +37,11 @@ def menuPrincipal():
                             os.system('cls')
                             print(msg.tituloJVSIA)
                             cru.solicitar_informacion()
+                            isActive = ia.juego()
                         except ValueError:
                             print('Error en el dato ingresado...')
                             os.system('pause')
                             continue
-                    isActive = ia
                 case 3:
                     pass
                 case 4:

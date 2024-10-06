@@ -9,7 +9,7 @@ def cargar_usuarios():
         return {} 
     except json.JSONDecodeError:
         print("Error al decodificar el archivo JSON.")
-        return {}  
+        return {} 
 
 def guardar_usuarios(usuarios):
     try:
