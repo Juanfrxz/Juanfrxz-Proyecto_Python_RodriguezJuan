@@ -20,6 +20,24 @@ tituloRegistro = """
             ╚╩╩═╩══╩══╩══╝╚╝╚╩╩═╝
 
 """
+titulo1VS1="""
+             ╔╦╗  ╔╦═══╗╔╗
+            ╔╝║╚╗╔╝║╔═╗╠╝║
+            ╚╗╠╗║║╔╣╚══╬╗║
+             ║║║╚╝║╚══╗║║║
+            ╔╝╚╬╗╔╝║╚═╝╠╝╚╗
+            ╚══╝╚╝ ╚═══╩══╝
+            
+"""
+tituloJVSIA=""" 
+              ╔╦╗  ╔╦═══╗  
+              ║║╚╗╔╝║╔═╗║  ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄
+              ║╠╗║║╔╣╚══╗ █░░░█░░░░░░░░░░▄▄░██░█
+            ╔╗║║║╚╝║╚══╗║ █░▀▀█▀▀░▄▀░▄▀░░▀▀░▄▄░█
+            ║╚╝║╚╗╔╝║╚═╝║ █░░░▀░░░▄▄▄▄▄░░██░▀▀░█  
+            ╚══╝ ╚╝ ╚═══╝  ▀▄▄▄▄▄▀─────▀▄▄▄▄▄▄▀
+
+"""
 msgInfoEquipo="Seguro que desea salir del programa N(no) y S(si) : "
 msgExit= 'Desea salir al menu principal S(si) y N(no) : '
 msgRegister = 'Desea registrar otro jugador? S(si) o N(no) : '
