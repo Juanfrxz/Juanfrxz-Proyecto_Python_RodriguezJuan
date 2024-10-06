@@ -27,6 +27,7 @@ def solicitar_informacion():
         if nickname in usuarios:
             print("Nickname ocupado, ingrese otro.")  
         else:
+            agregar_otro = input("¿Deseas agregar otro? (sí/no): ").lower()
             usuarios[nickname] = nombre_completo  
             guardar_usuarios(usuarios)  
             print(f"¡Registro completado! Bienvenido/a, {nombre_completo} con el nickname {nickname}")

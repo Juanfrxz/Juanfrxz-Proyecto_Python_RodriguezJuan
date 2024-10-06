@@ -28,6 +28,7 @@ def validateData(message:str):
         return flagFunction
     except TypeError:
         validateData(message)
+        
 def validateResponse(message:str):
     global isAllow
     flagFunction = True

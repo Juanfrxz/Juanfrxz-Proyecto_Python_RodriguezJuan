@@ -1,9 +1,10 @@
 import os
-from Modules.utils import menus as men
+from Modules.utils import menus as men 
 from Modules.utils import mensajes as msg
 from Modules.utils import util as utl
 from Modules.utils import createUser as cru
 from Modules.utils import JvsIA as ia
+from Modules.utils import JVSJ as jvj
  
 def menuPrincipal():
     thechapipun = []
@@ -24,7 +25,7 @@ def menuPrincipal():
                             os.system('cls')                           
                             print(msg.titulo1VS1)
                             cru.solicitar_informacion()
-                            isActive = ia.juego()
+                            isActive = jvj.juego1v1()
                         except ValueError:
                             print('Error en el dato ingresado...')
                             os.system('pause')
@@ -37,7 +38,7 @@ def menuPrincipal():
                             os.system('cls')
                             print(msg.tituloJVSIA)
                             cru.solicitar_informacion()
-                            isActive = ia.juego()
+                            isActive = ia.juegojvia()
                         except ValueError:
                             print('Error en el dato ingresado...')
                             os.system('pause')

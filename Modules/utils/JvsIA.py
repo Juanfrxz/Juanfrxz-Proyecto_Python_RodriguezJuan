@@ -2,14 +2,12 @@ import random
 
 opciones = ['piedra', 'papel', 'tijera']
 
-def juego():
+def juegojvia():
     print("¡Bienvenido al juego The Chachipun!")
     try: 
         usuario = input("Elige piedra, papel o tijera: ").lower()
-        
         computadora = random.choice(opciones)
         print(f"Computadora eligió: {computadora}")
-        
         if usuario == computadora:
             print("¡Es un empate!")
         elif (usuario == 'piedra' and computadora == 'tijera') or \
