@@ -1,4 +1,5 @@
 import random
+import main
 import os
 from Modules.utils import core as user
 from Modules.utils import menus as mn
@@ -8,18 +9,36 @@ contador = {
     'rondasGanadasUser': 0,
     'rondasGanadasCompu': 0
 }
+
 escudo_usuario = False
 escudo_computadora = False
 victorias_consecutivas_usuario = 0
 victorias_consecutivas_computadora = 0
 
+def gamePermission(diccionarioPrincipal):
+    gamer = user.signUp_User(diccionarioPrincipal)
+    if isinstance(gamer, str):
+        print(f"El jugador {gamer} ha sido registrado con éxito.")
+    else:
+        input('Error al registrar el jugador. Enter para regresar al menú principal.')
+        main.menuPrincipal()
+        
+def startGame(diccionarioPrincipal):
+    jugador = user.login(diccionarioPrincipal)
+    if isinstance(jugador, str):
+        print(f"¡Bienvenido {jugador}! Empecemos a jugar.")
+        jvsia()
+    else:
+        input('El usuario no pudo ser validado. Enter para regresar al menú principal.')
+        mn.menuJugar()
+
 def jvsia():
+    print("¡Bienvenido al juego The Chachipun!")
     global victorias_consecutivas_computadora
     global victorias_consecutivas_usuario
     global escudo_computadora
     global escudo_usuario
     global contador
-    print("¡Bienvenido al juego The Chachipun!")
     try: 
         while True:
             if contador['rondasGanadasUser'] < 3 and contador['rondasGanadasCompu'] < 3:
@@ -61,24 +80,7 @@ def jvsia():
                     else:
                         contador['rondasGanadasCompu'] += 1
                 print(f"Usuario: {contador['rondasGanadasUser']} | Computadora: {contador['rondasGanadasCompu']}")
-
             else:
                 break
     except ValueError:
         print("Ocurrió un error con la entrada del usuario.")
-
-    def gamePermission(diccionarioPrincipal):
-        gamer = user.signUp_User(diccionarioPrincipal)
-        if isinstance(gamer, str):
-            print(f"El jugador {gamer} ha sido registrado con éxito.")
-        else:
-            input('Error al registrar el jugador. Enter para regresar al menú principal.')
-            
-    def startGame(diccionarioPrincipal):
-        jugador = user.login(diccionarioPrincipal)
-        if isinstance(jugador, str):
-            print(f"¡Bienvenido {jugador}! Empecemos a jugar.")
-            jvsia()
-        else:
-            input('El usuario no pudo ser validado. Enter para regresar al menú principal.')
-            mn.menuJugar()

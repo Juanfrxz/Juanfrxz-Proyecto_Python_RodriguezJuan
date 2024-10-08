@@ -30,10 +30,10 @@ def menuPrincipal():
                     while (isAddRsg):
                         try:
                             os.system('cls')
-                            cr.MY_DATABASE = 'data/usuarios.json'
-                            cr.checkFile(juego)
-                            print(msg.tituloJVSIA)
-                            isActive = ia.juegojvia()
+                            print(msg.titulo1VS1)
+                            ia.gamePermission(juego)
+                            ia.startGame(juego)
+                            isActive = jvj.jvs2p()
                             break
                         except ValueError:
                             print('Error en el dato ingresado...')
@@ -46,6 +46,8 @@ def menuPrincipal():
                         try:
                             os.system('cls')
                             print(msg.tituloJVSIA)
+                            ia.gamePermission(juego)
+                            ia.startGame(juego)
                             isActive = ia.jvsia()
                             break
                         except ValueError:
