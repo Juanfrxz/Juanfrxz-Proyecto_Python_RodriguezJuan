@@ -1,6 +1,6 @@
-from Modules.utils.util import LeerFile, NewFile
+from Modules.utils.yeison import LeerFile, NewFile, checkFile
 
-def loginUser(nombre, nickname):
+def login_User(nombre, nickname):
     data = LeerFile()
     gamers = data.get('gamers', {})
     if nickname in gamers:
@@ -14,8 +14,9 @@ def loginUser(nombre, nickname):
             "gameJugados" : 0,
             "gameLoss" : 0,
         }
+        checkFile(dato)
         gamers[nickname] = dato
         dato["gamers"] = gamers
         NewFile(dato)
-        print(f'Jugador {nickname} registrado con exito')
+        print(f'Jugador {nickname} registrado con exito.')
 

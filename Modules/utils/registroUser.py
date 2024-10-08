@@ -4,12 +4,23 @@ from Modules.utils import mensajes as msg
 from Modules.utils import util as utl
 from Modules.utils import JvsIA as ia
 from Modules.utils import JVSJ as jvj
+from Modules.utils import yeison as jsn
  
 def menuPrincipal():
-    thechapipun = {}
+    juego = {
+        'palyers':{},
+        'maquina':{
+            'gamesPerdidos':0,
+            'gamesGanados':0,
+            'gamesJugados':0
+        }
+    }
     isActive = True
     opMenu = 0
     while (isActive):
+        jsn.MY_DATABASE = 'data/usuarios.json'
+        jsn.checkFile(juego)
+        os.system('cls')
         try:
             os.system('cls')
             print(msg.tituloPrincipal)
@@ -30,6 +41,7 @@ def menuPrincipal():
                             os.system('pause')
                             continue
                 case 2:
+                    
                     isAddRsg = True
                     opMenuRegis = 0
                     while (isAddRsg):
