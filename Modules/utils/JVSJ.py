@@ -1,5 +1,5 @@
 import random
-from Modules.utils import createUser as user
+from Modules.utils import core as user
 opciones = ['piedra', 'papel', 'tijera']
 contador = {
     'rondasGanadasUser' : 0,
@@ -8,7 +8,7 @@ contador = {
 def juego1v1():
     print("¡Bienvenido al juego The Chachipun!")
     try:
-        user.solicitar_informacion()
+        user.login_User()
         while True:
             if contador['rondasGanadasUser'] < 3 and contador['rondasGanadasCompu'] < 3:
                 jugador1 = input("Player 1 : Elige piedra, papel o tijera: ").lower()

@@ -1,6 +1,6 @@
 import random
 import os
-from Modules.utils import createUser as user
+from Modules.utils import core as user
 
 opciones = ['piedra', 'papel', 'tijera']
 
@@ -13,12 +13,13 @@ escudo_computadora = False
 victorias_consecutivas_usuario = 0
 victorias_consecutivas_computadora = 0
 
-def juegojvia():
+def jvsia():
+    global victorias_consecutivas_computadora
+    global victorias_consecutivas_usuario
+    global escudo_computadora
+    global escudo_usuario
+    global contador
     print("¡Bienvenido al juego The Chachipun!")
-    nombre = input("Ingrese su nombre por favor: ")
-    nickname = input("Ingrese su nickname por favor: ")
-    user.login_User(nombre, nickname)
-
     try: 
         while True:
             if contador['rondasGanadasUser'] < 3 and contador['rondasGanadasCompu'] < 3:
@@ -63,7 +64,6 @@ def juegojvia():
 
             else:
                 break
-
     except ValueError:
         print("Ocurrió un error con la entrada del usuario.")
 
