@@ -1,9 +1,9 @@
 import random
 import os
 from Modules.utils import core as user
+from Modules.utils import menus as mn
 
 opciones = ['piedra', 'papel', 'tijera']
-
 contador = {
     'rondasGanadasUser': 0,
     'rondasGanadasCompu': 0
@@ -67,4 +67,18 @@ def jvsia():
     except ValueError:
         print("Ocurrió un error con la entrada del usuario.")
 
-
+    def gamePermission(diccionarioPrincipal):
+        gamer = user.signUp_User(diccionarioPrincipal)
+        if isinstance(gamer, str):
+            print(f"El jugador {gamer} ha sido registrado con éxito.")
+        else:
+            input('Error al registrar el jugador. Enter para regresar al menú principal.')
+            
+    def startGame(diccionarioPrincipal):
+        jugador = user.login(diccionarioPrincipal)
+        if isinstance(jugador, str):
+            print(f"¡Bienvenido {jugador}! Empecemos a jugar.")
+            jvsia()
+        else:
+            input('El usuario no pudo ser validado. Enter para regresar al menú principal.')
+            mn.menuJugar()

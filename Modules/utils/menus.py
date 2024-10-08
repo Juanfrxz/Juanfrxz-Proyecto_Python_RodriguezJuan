@@ -1,7 +1,7 @@
 menuRegistro="""
 1. Jugar
 2. Registrarse
-3. Inicirar sesion
+3. Iniciar sesion
 4. Salir
 """
 menuJugar="""

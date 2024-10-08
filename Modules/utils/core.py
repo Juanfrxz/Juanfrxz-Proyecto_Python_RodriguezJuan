@@ -1,30 +1,31 @@
 import os
 import json
 
-MY_DATABASE = 'data/usuarios.json'
+MY_DATABASE = None
 
-def LeerFile():
+def NewFile(param):
+    with open(MY_DATABASE, "w") as wf:
+        json.dump(param[0], wf, indent=4)
+
+def ReadFile():
+    with open(MY_DATABASE, "r") as rf:
+        return json.load(rf)
+
+def checkFile(param):
+    data = list(param)
     if os.path.isfile(MY_DATABASE):
-        with open (MY_DATABASE) as al:
-            return json.load(al)
+        if len(param):
+            data[0].update(ReadFile())
     else:
-        return {}
-    
-def NewFile(data):
-    with open(MY_DATABASE, "w") as md:
-        json.dump(data,md,indent=4)
-        
-    
-def checkFile(initialDta):
-    if not os.path.isfile(MY_DATABASE):
-        NewFile(initialDta)
+        if len(param):
+            NewFile(data[0])
 
-def login_User(nombre, nickname):
-    data = LeerFile()
+def signUp_User(mainDictionary):
+    data = ReadFile()
     gamers = data.get('gamers', {})
     nombres = input('Por favor ingrese su nombre completo : ')
     nicknames = input('Por favor ingrese su nickname : ')
-    if nickname in gamers:
+    if nicknames in gamers:
         print("El nickname ya esta ocupado, utiliza otro por favor😊")
     else:
         dato = {
@@ -36,8 +37,20 @@ def login_User(nombre, nickname):
             "gameLoss" : 0,
         }
         checkFile(dato)
-        gamers[nickname] = dato
+        gamers[nicknames] = dato
         dato["gamers"] = gamers
+        mainDictionary.update({len(mainDictionary)+1:dato})
         NewFile(dato)
-        print(f'Jugador {nickname} registrado con exito.')
+        print(f'Jugador {nicknames} registrado con exito.')
 
+def login(mainDictionary):
+    nombreUsuario= str(input("Por favor, ingrese su nombre completo."))
+    nicknameUsuario= str(input("Por favor, ingrese su nickname para validarlo."))
+    userValidated = False
+    
+    for k,v in mainDictionary.items():
+        if v.get("gamers")== nombreUsuario:
+            if v.get("nickname")== nicknameUsuario:
+                userValidated= nicknameUsuario
+
+    return nicknameUsuario
