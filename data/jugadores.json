@@ -1,20 +1,3 @@
 {
-    "jugadores": [
-        {
-            "nombre_completo": "juan david",
-            "nickname": "frxz",
-            "partidas_jugadas": 0,
-            "partidas_ganadas": 0,
-            "partidas_perdidas": 0,
-            "puntos_totales": 0
-        },
-        {
-            "nombre_completo": "asd",
-            "nickname": "l",
-            "partidas_jugadas": 0,
-            "partidas_ganadas": 0,
-            "partidas_perdidas": 0,
-            "puntos_totales": 0
-        }
-    ]
+
 }

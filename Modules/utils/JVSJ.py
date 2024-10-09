@@ -1,8 +1,7 @@
-import random
 import main
-import os
+import json
+import main as mn
 from Modules.utils import core as user
-from Modules.utils import menus as mn
 
 opciones = ['piedra', 'papel', 'tijera']
 contador = {
@@ -10,10 +9,37 @@ contador = {
     'rondasGanadasUser2': 0
 }
 
+jugador=True
 escudo_usuario1 = False
 escudo_usuario2 = False
 victorias_consecutivas_usuario1 = 0
 victorias_consecutivas_usuario2 = 0
+
+MY_DATABASE = 'data/jugadores.json'
+
+def WriteFile(data):
+    with open(MY_DATABASE, "w") as wf:
+        json.dump(data, wf, indent=4)
+
+def ReadFile():
+    with open(MY_DATABASE, 'r') as rf:
+        return json.load(rf)
+
+def actualizar_estadisticas(jugador, ganada):
+    data = ReadFile()
+    if jugador in data:
+        data[jugador]['partidas_jugadas'] += 1
+        if ganada:
+            data[jugador]['partidas_ganadas'] += 1
+        else:
+            data[jugador]['partidas_perdidas'] += 1
+    else:
+        data[jugador] = {
+            'partidas_jugadas': 1,
+            'partidas_ganadas': 1 if ganada else 0,
+            'partidas_perdidas': 0 if ganada else 1
+        }
+    WriteFile(data)
 
 def gamePermission(diccionarioPrincipal):
     gamer = user.signUp_User(diccionarioPrincipal)
@@ -21,32 +47,52 @@ def gamePermission(diccionarioPrincipal):
         print(f"El jugador {gamer} ha sido registrado con éxito.")
     else:
         input('Error al registrar el jugador. Enter para regresar al menú.')
-        mn.menuJugar()
+        mn.men()
+        
+def gamePermission2(diccionarioPrincipal):
+    gamer2 = user.signUp_User2(diccionarioPrincipal)
+    if isinstance(gamer2, str):
+        print(f"El jugador {gamer2} ha sido registrado con éxito.")
+    else:
+        input('Error al registrar el jugador. Enter para regresar al menú principal.')
+        main.menuPrincipal()
         
 def startGame(diccionarioPrincipal):
-    print("Inicio de sesión para el Jugador 1")
-    jugador1 = user.login(diccionarioPrincipal)
-    if not isinstance(jugador1, str):
-        input('El jugador 1 no pudo ser validado. Enter para regresar al menú principal.')
-        mn.menuJugar()
+    while True:
+        print("Inicio de sesión para el Jugador 1")
+        jugador1 = user.login(diccionarioPrincipal)
+        if not isinstance(jugador1, str):
+            input('El jugador 1 no pudo ser validado. Enter para regresar al menú principal.')
+            return
 
-    print("Inicio de sesión para el Jugador 2")
-    jugador2 = user.login(diccionarioPrincipal)
-    if not isinstance(jugador2, str):
-        input('El jugador 2 no pudo ser validado. Enter para regresar al menú principal.')
-        mn.menuJugar()
+        print("Inicio de sesión para el Jugador 2")
+        jugador2 = user.login(diccionarioPrincipal)
+        if not isinstance(jugador2, str):
+            input('El jugador 2 no pudo ser validado. Enter para regresar al menú principal.')
+            return
     
-    print(f"¡Bienvenidos {jugador1} y {jugador2}! Empecemos a jugar.")
-    jvs2p(jugador1, jugador2)
+        print(f"¡Bienvenidos {jugador1} y {jugador2}! Empecemos a jugar.")
+        jvs2p(jugador1, jugador2)
+        
+        jugar_otra = input("¿Quieren jugar otra partida? (s/n): ").lower()
+        if jugar_otra != 's':
+            break
 
 def jvs2p(jugador1, jugador2):
-    print("¡Bienvenido al juego The Chachipun entre dos jugadores!")
     global victorias_consecutivas_usuario1
     global victorias_consecutivas_usuario2
     global escudo_usuario1
     global escudo_usuario2
     global contador
-
+    
+    # Reiniciar contadores para una nueva partida
+    contador['rondasGanadasUser1'] = 0
+    contador['rondasGanadasUser2'] = 0
+    victorias_consecutivas_usuario1 = 0
+    victorias_consecutivas_usuario2 = 0
+    escudo_usuario1 = False
+    escudo_usuario2 = False
+    
     try: 
         while True:
             if contador['rondasGanadasUser1'] < 3 and contador['rondasGanadasUser2'] < 3:
@@ -95,9 +141,14 @@ def jvs2p(jugador1, jugador2):
             else:
                 if contador['rondasGanadasUser1'] == 3:
                     print(f"¡{jugador1} ha ganado la partida!")
+                    actualizar_estadisticas(jugador1, True)
+                    actualizar_estadisticas(jugador2, False)
                 else:
                     print(f"¡{jugador2} ha ganado la partida!")
+                    actualizar_estadisticas(jugador2, True)
+                    actualizar_estadisticas(jugador1, False)
                 break
 
     except ValueError:
         print("Ocurrió un error con la entrada.")
+

@@ -1,6 +1,6 @@
 import random
-import main
-import os
+import main as mn
+import json
 from Modules.utils import core as user
 from Modules.utils import menus as mn
 
@@ -10,10 +10,34 @@ contador = {
     'rondasGanadasCompu': 0
 }
 
-escudo_usuario = False
-escudo_computadora = False
-victorias_consecutivas_usuario = 0
-victorias_consecutivas_computadora = 0
+MY_DATABASE = 'data/jugadores.json'
+
+def WriteFile(data):
+    with open(MY_DATABASE, "w") as wf:
+        json.dump(data, wf, indent=4)
+
+def ReadFile():
+    try:
+        with open(MY_DATABASE, 'r') as rf:
+            return json.load(rf)
+    except FileNotFoundError:
+        return {}
+
+def actualizar_estadisticas(jugador, ganada):
+    data = ReadFile()
+    if jugador in data:
+        data[jugador]['partidas_jugadas'] += 1
+        if ganada:
+            data[jugador]['partidas_ganadas'] += 1
+        else:
+            data[jugador]['partidas_perdidas'] += 1
+    else:
+        data[jugador] = {
+            'partidas_jugadas': 1,
+            'partidas_ganadas': 1 if ganada else 0,
+            'partidas_perdidas': 0 if ganada else 1
+        }
+    WriteFile(data)
 
 def gamePermission(diccionarioPrincipal):
     gamer = user.signUp_User(diccionarioPrincipal)
@@ -21,24 +45,29 @@ def gamePermission(diccionarioPrincipal):
         print(f"El jugador {gamer} ha sido registrado con éxito.")
     else:
         input('Error al registrar el jugador. Enter para regresar al menú principal.')
-        main.menuPrincipal()
-        
+               
 def startGame(diccionarioPrincipal):
-    jugador = user.login(diccionarioPrincipal)
-    if isinstance(jugador, str):
-        print(f"¡Bienvenido {jugador}! Empecemos a jugar.")
-        jvsia()
-    else:
-        input('El usuario no pudo ser validado. Enter para regresar al menú principal.')
-        mn.menuJugar()
+    while True:
+        jugador = user.login(diccionarioPrincipal)
+        if isinstance(jugador, str):
+            print(f"¡Bienvenido {jugador}! Empecemos a jugar.")
+            jvsia(jugador)
+            jugar_otra = input("¿Quieres jugar otra partida? (s/n): ").lower()
+            if jugar_otra != 's':
+                break
+        else:
+            input('El usuario no pudo ser validado. Enter para regresar al menú principal.')
+            break
 
-def jvsia():
-    print("¡Bienvenido al juego The Chachipun!")
-    global victorias_consecutivas_computadora
-    global victorias_consecutivas_usuario
-    global escudo_computadora
-    global escudo_usuario
+def jvsia(jugador):
     global contador
+    victorias_consecutivas_usuario = 0
+    victorias_consecutivas_computadora = 0
+    escudo_usuario = False
+    escudo_computadora = False
+    contador['rondasGanadasUser'] = 0
+    contador['rondasGanadasCompu'] = 0
+
     try: 
         while True:
             if contador['rondasGanadasUser'] < 3 and contador['rondasGanadasCompu'] < 3:
@@ -79,8 +108,14 @@ def jvsia():
                         escudo_usuario = False  
                     else:
                         contador['rondasGanadasCompu'] += 1
-                print(f"Usuario: {contador['rondasGanadasUser']} | Computadora: {contador['rondasGanadasCompu']}")
+                print(f"Usuario: {contador['rondasGanadasUser']} | Computadora: {contador['rondasGanadasCompu']}")      
             else:
+                if contador['rondasGanadasUser'] == 3:
+                    print(f"¡{jugador} ha ganado la partida!")
+                    actualizar_estadisticas(jugador, True)
+                else:
+                    print("¡La computadora ha ganado la partida!")
+                    actualizar_estadisticas(jugador, False)
                 break
     except ValueError:
         print("Ocurrió un error con la entrada del usuario.")
