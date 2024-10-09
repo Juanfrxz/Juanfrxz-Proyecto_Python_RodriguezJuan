@@ -81,16 +81,24 @@ Elementos principales:
 Cómo jugar
 
 - Ejecute main.py para iniciar el juego.
+![Captura de pantalla 2024-10-08 231716](https://github.com/user-attachments/assets/55a7aca0-958c-4751-8b97-0ab4656a937d)
 - Elija entre jugar contra otro jugador o contra la computadora.
+![image](https://github.com/user-attachments/assets/179c1b9a-185d-4b12-a7af-fbc2e2cea4b8)
 - Si es un nuevo jugador, regístrese. Si ya está registrado, inicie sesión.
+![image](https://github.com/user-attachments/assets/5498650e-dc14-417f-a4b9-69d590f385b0)
+![image](https://github.com/user-attachments/assets/8c1a30e6-145f-4fd5-a9e1-8dffecf41a0c)
 - Siga las instrucciones en pantalla para jugar.
+![image](https://github.com/user-attachments/assets/f7c13fb7-9c10-4d12-ac03-d28ca3c04b20)
+![image](https://github.com/user-attachments/assets/a83cbcc4-4137-43c9-81e4-bdbaff86a7e4)
+![image](https://github.com/user-attachments/assets/ea32a0ad-fa9d-4c58-86e8-5d75ab4c4aa6)
 - Disfrute del juego y ¡que gane el mejor!
 
 Características especiales
 
 - Escudos: Después de ganar dos rondas consecutivas, un jugador obtiene un escudo que lo protege de perder la siguiente ronda.
-- Registro de jugadores: Las estadísticas de los jugadores se guardan entre sesiones.
+![image](https://github.com/user-attachments/assets/d9150982-bab0-47b9-a9d1-b92f4e37eddc)
 - Modos de juego: Elija entre jugar contra la computadora o contra otro jugador.
+![image](https://github.com/user-attachments/assets/c3bd8aa0-c6bd-465c-b266-9af271ad08a7)
 
 Requisitos
 
